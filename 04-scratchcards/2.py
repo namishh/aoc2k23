@@ -1,3 +1,5 @@
+# Cons - takes a lot of time to be processed
+
 def seperate(li):
     a = li[0].split(" ")
     b = li[1].split(" ")
@@ -6,22 +8,23 @@ def seperate(li):
 def getDuplicates(your, winners):
     return [i for i in winners if i in your]
 
-def computeCard(card):
+def computeCard(card, position, b):
     winners = card[0]
     your = card[1]
-    dupes = getDuplicates(your, winners)
-    d = len(dupes) - 1
-    if not d < 0:
-        return 2 ** d
-    else:
-        return 0
+    dupes = getDuplicates(your, winners) 
+    b[position] = b[position] + 1
+    for _ in range(b[position]):
+        for i in range(len(dupes)):
+            n = position + i + 1
+            b[n] = b[n] + 1
+    return dupes
 
 def calc(cards): 
     matrix = [seperate(line.strip().split(":")[1].split("|")) for line in open(cards)]
-    a = 0
-    for card in matrix:
-        a += computeCard(card)
-    return a
+    b = [0] * len(matrix)
+    for i,card in enumerate(matrix):
+        computeCard(card, i, b)
+    return sum(b) 
 
 def main():
     c = calc("inputs.txt") 
