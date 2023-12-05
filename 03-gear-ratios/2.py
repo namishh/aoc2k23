@@ -37,7 +37,6 @@ def calc(engine):
         adj = getAdjacent(matrix, x,y)
         adjacents.append(adj)
     finals = []
-    print(adjacents)
     for h in adjacents:
         z = []
         for i in h:
