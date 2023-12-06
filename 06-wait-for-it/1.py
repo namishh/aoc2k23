@@ -1,10 +1,5 @@
 def analyze(n, d):
-    splitted = [(i, n-i) for i in range(1, n)]
-    count = 0
-    for j in splitted:
-        if j[0] * j[1] > d:
-            count+=1
-    return count
+    return len([j for j in [(i, n-i) for i in range(1, n)] if j[0] * j[1] > d])
 
 def calc(file):
     data = [line.strip() for line in open(file) if line.strip()]
