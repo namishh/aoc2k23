@@ -13,7 +13,7 @@ def calc(maps):
             currnode = nodes[currnode][curr]
             steps+=1
             curr = algorithm[steps]
-    print(steps + 1)
+    return steps + 1
 def main():
     a = calc("inputs.txt")
     print(a)
