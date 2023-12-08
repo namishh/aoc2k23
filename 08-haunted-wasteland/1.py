@@ -6,7 +6,6 @@ def calc(maps):
     currnode = 'AAA'
     steps = 0
     while True:
-        print(currnode, curr)
         if nodes[currnode][curr] == 'ZZZ':
             break 
         else:
