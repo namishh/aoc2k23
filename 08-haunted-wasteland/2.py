@@ -1,4 +1,9 @@
-import math
+def lcm(num1, num2):
+    for i in range(max(num1, num2), 1 + (num1 * num2), max(num1, num2)):
+        if i % num1 == i % num2 == 0:
+            l = i
+            break
+    return l
 
 def calc(maps):
     maps = [line.strip().split(" = ") for line in open(maps)]
@@ -18,8 +23,9 @@ def calc(maps):
         return steps + 1
     step = 1
     for i in aas:
-        step = math.lcm(step, traverse(i, curr))
+        step = lcm(step, traverse(i, curr))
     return step
+
 def main():
     a = calc("inputs.txt")
     print(a)
