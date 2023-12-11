@@ -18,12 +18,9 @@ def getEmpty(matrix):
 
 def findGalaxies(matrix):
     coordinates = []
-
     for rindex, row in enumerate(matrix):
-        for cindex, element in enumerate(row):
-            if element == "#":
-                coordinates.append((rindex, cindex))
-
+        if "#" in row:
+            coordinates.extend((rindex, cindex) for cindex, element in enumerate(row) if element == "#")
     return coordinates
 
 def manhattan(point1, point2):
@@ -45,12 +42,12 @@ def calc(file):
     univ = [[char for char in line.strip()] for line in open(file)]
     flatverts,flathortz = getEmpty(univ)
     for i in flathortz:
-        for q in range(1,1000000):
-                univ.insert(i+q,['.']*len(univ[0]))
+        print("i")
+        univ[i:i+1000000] = [['.'] * len(univ[0])] * 1000000
     for i in flatverts:
         for j in univ:
-            for q in range(1,1000000):
-                j.insert(i+q, ".")
+            j[i:i+1000000] = ["."] * 1000000
+    print(univ)
     galaxies = findGalaxies(univ)
     distances = getdistances(galaxies)
     return sum(distances)

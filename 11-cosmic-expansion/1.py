@@ -17,11 +17,9 @@ def getEmpty(matrix):
 
 def findGalaxies(matrix):
     coordinates = []
-
     for rindex, row in enumerate(matrix):
-        for cindex, element in enumerate(row):
-            if element == "#":
-                coordinates.append((rindex, cindex))
+        if "#" in row:
+            coordinates.extend((rindex, cindex) for cindex, element in enumerate(row) if element == "#")
 
     return coordinates
 
