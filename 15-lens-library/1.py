@@ -1,6 +1,5 @@
 def calc(lenses):
     lenses = [line.strip().split(",") for line in open(lenses)][0]
-    print(lenses)
     values = []
     for lens in lenses:
         val = 0
